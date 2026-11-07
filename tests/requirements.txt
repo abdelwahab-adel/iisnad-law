@@ -1,0 +1,2 @@
+# اختبارات المساعد الآلي (الشات) — تعمل على Chromium عبر Playwright
+playwright>=1.45

@@ -13,30 +13,44 @@
 .cw [hidden]{display:none!important}
 .cw svg{display:block;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
-/* ===== الزر العائم (يحلّ محلّ زر واتساب في أسفل يسار الشاشة) ===== */
+/* ===== الزر العائم (يحلّ محلّ زر واتساب في أسفل يسار الشاشة) =====
+   حبّة عاجية بحدّ ذهبي رفيع، وفي بدايتها أيقونة دائرية بالأخضر الداكن والذهبي، فتبرز فوق الهيرو الداكن وفوق الأقسام البيضاء معًا. */
 .cw-btn{
   position:fixed;inset:auto auto calc(20px + env(safe-area-inset-bottom,0px)) 24px;z-index:24;
-  display:flex;align-items:center;gap:10px;height:58px;padding:0;padding-inline:18px 22px;
-  border:1px solid #c9b66a;border-radius:999px;cursor:pointer;
-  background:linear-gradient(135deg,#efe3b4,#d6c47c);color:var(--cw-g);
-  box-shadow:0 10px 28px rgba(10,44,45,.34),0 2px 6px rgba(10,44,45,.22);
+  display:flex;align-items:center;gap:12px;height:60px;padding:0;padding-inline:7px 22px;
+  border:1px solid rgba(190,166,84,.9);border-radius:999px;cursor:pointer;white-space:nowrap;
+  background:linear-gradient(180deg,#fffbee 0%,#f4e9c6 100%);color:var(--cw-g);
+  box-shadow:0 16px 34px rgba(10,44,45,.32),0 3px 8px rgba(10,44,45,.18),inset 0 1px 0 rgba(255,255,255,.9),inset 0 -1px 0 rgba(190,166,84,.35);
   font-size:14.5px;font-weight:700;line-height:1;letter-spacing:0;
-  transition:transform .2s ease,box-shadow .2s ease,border-color .2s;
+  transition:transform .2s ease,box-shadow .2s ease;
 }
-.cw-btn svg{width:26px;height:26px;color:var(--cw-g)}
-.cw-btn .cw-x{display:none}
+.cw-ic,.cw-x{flex:none;width:46px;height:46px;display:grid;place-items:center;border-radius:50%;color:#ecdfae;
+  background:radial-gradient(circle at 30% 25%,#1d5654 0%,#0f3a3b 46%,#0a2c2d 100%);
+  box-shadow:inset 0 0 0 1.5px rgba(228,211,154,.6),0 3px 8px rgba(10,44,45,.4);
+  transition:transform .2s ease,box-shadow .2s ease}
+.cw-btn svg{width:23px;height:23px}
+.cw-x{display:none}
 .cw-btn[aria-expanded="true"] .cw-ic{display:none}
-.cw-btn[aria-expanded="true"] .cw-x{display:block}
-.cw-btn[aria-expanded="true"] .cw-lbl{display:none}
-.cw-btn[aria-expanded="true"]{padding:0;width:58px;justify-content:center}
+.cw-btn[aria-expanded="true"] .cw-x{display:grid}
+.cw-lbl{display:block;max-width:170px;overflow:hidden;transition:max-width .25s ease,opacity .2s ease,margin .25s ease}
+.cw-btn[aria-expanded="true"] .cw-lbl{max-width:0;opacity:0;margin-inline-start:-12px}
+.cw-btn[aria-expanded="true"]{padding-inline:7px}
 .cw-btn:focus-visible{outline:3px solid var(--cw-gold);outline-offset:3px}
-@media(hover:hover){.cw-btn:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(10,44,45,.4),0 2px 6px rgba(10,44,45,.22)}}
-.cw-pip{position:absolute;top:-3px;inset-inline-end:-3px;width:15px;height:15px;border-radius:50%;background:#3ddc84;border:2.5px solid var(--cw-g)}
+.cw-btn:active{transform:translateY(0) scale(.98)}
+@media(hover:hover){
+  .cw-btn:hover{transform:translateY(-2px);box-shadow:0 22px 42px rgba(10,44,45,.38),0 3px 8px rgba(10,44,45,.2),inset 0 1px 0 rgba(255,255,255,.9),inset 0 -1px 0 rgba(190,166,84,.35)}
+  .cw-btn:hover .cw-ic{transform:scale(1.07);box-shadow:inset 0 0 0 1.5px rgba(240,226,160,.95),0 5px 12px rgba(10,44,45,.45)}
+}
+/* نقطة الحالة على الأيقونة: أخضر عند فتح المكتب، وكهرماني عند إغلاقه (نفس منطق رأس النافذة) */
+.cw-pip{position:absolute;top:4px;inset-inline-start:41px;width:15px;height:15px;border-radius:50%;background:#3ddc84;border:2.5px solid #fbf3d6;box-shadow:0 1px 3px rgba(10,44,45,.3)}
+.cw-pip.off{background:#e8b84a}
 .cw-btn[aria-expanded="true"] .cw-pip{display:none}
+.cw-btn::before{content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none}
 @media(prefers-reduced-motion:no-preference){
-  @keyframes cw-ring{0%{box-shadow:0 10px 28px rgba(10,44,45,.32),0 0 0 0 rgba(184,170,102,.55)}100%{box-shadow:0 10px 28px rgba(10,44,45,.32),0 0 0 16px rgba(184,170,102,0)}}
-  .cw-btn{animation:cw-ring 2.4s ease-out 3 1.2s}
-  @keyframes cw-ring{0%{box-shadow:0 10px 28px rgba(10,44,45,.34),0 0 0 0 rgba(214,196,124,.7)}100%{box-shadow:0 10px 28px rgba(10,44,45,.34),0 0 0 16px rgba(214,196,124,0)}}
+  @keyframes cw-ring{0%{box-shadow:0 0 0 0 rgba(214,196,124,.75)}100%{box-shadow:0 0 0 18px rgba(214,196,124,0)}}
+  @keyframes cw-enter{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .cw-btn{animation:cw-enter .5s cubic-bezier(.2,.8,.2,1) .5s backwards}
+  .cw-btn::before{animation:cw-ring 2.4s ease-out 3 1.6s}
 }
 
 /* ===== النافذة ===== */
@@ -157,13 +171,13 @@
 
 /* ===== الجوال: النافذة بملء الشاشة ===== */
 @media(max-width:760px){
-  .cw-btn{left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:56px;height:56px;padding:0;justify-content:center}
+  .cw-btn{left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));height:58px;padding-inline:6px}
   .cw-btn .cw-lbl{display:none}
-  .cw-btn[aria-expanded="true"]{width:56px}
+  .cw-pip{inset-inline-start:39px}
   .cw-panel{inset:0;width:auto;height:auto;border:0;border-radius:0;box-shadow:none;background:#fff}
   .cw-hd{padding-top:calc(14px + env(safe-area-inset-top,0px))}
   .cw-btn[aria-expanded="true"]{display:none}
-  .cw-tip{left:16px;bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+  .cw-tip{left:16px;bottom:calc(88px + env(safe-area-inset-bottom,0px))}
   .cw-tip::after{left:22px}
   .cw-menu{inset-inline-end:10px}
   .cw-log{padding-inline:14px}
@@ -175,7 +189,7 @@
   .cw-ft{padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
 }
 /* تنبيه لطيف فوق الزر (مرة واحدة في الجلسة) */
-.cw-tip{position:fixed;left:24px;bottom:calc(92px + env(safe-area-inset-bottom,0px));z-index:24;display:flex;align-items:stretch;
+.cw-tip{position:fixed;left:24px;bottom:calc(96px + env(safe-area-inset-bottom,0px));z-index:24;display:flex;align-items:stretch;
   max-width:min(284px,calc(100vw - 32px));background:#fff;border:1px solid var(--cw-gold);border-radius:14px;box-shadow:0 14px 34px rgba(10,44,45,.28)}
 .cw-tip::after{content:"";position:absolute;bottom:-7px;left:28px;width:12px;height:12px;background:#fff;border-right:1px solid var(--cw-gold);border-bottom:1px solid var(--cw-gold);rotate:45deg}
 .cw-tt{flex:1;min-width:0;padding:12px 14px;border:0;background:none;text-align:start;cursor:pointer;font-size:14px;font-weight:600;line-height:1.6;color:var(--cw-g)}

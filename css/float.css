@@ -1,29 +1,5 @@
-/* إسناد القانونية — الأزرار العائمة: واتساب أسفل يسار الشاشة، و«للأعلى» أسفل يمينها.
-   يُحمَّل بعد باقي الملفات ليحسم موضع الزرين وشكلهما. */
-
-html .fb{
-  position:fixed;inset:auto auto calc(20px + env(safe-area-inset-bottom,0px)) 24px;
-  width:60px;height:60px;padding:0;gap:0;
-  display:flex;align-items:center;justify-content:center;
-  border:0;border-radius:50%;
-  background:#25d366;color:#fff;
-  font-size:0;line-height:0;
-  box-shadow:0 0 0 0 rgba(37,211,102,0);
-  transition:opacity .25s ease,transform .25s ease,visibility .25s,background-color .2s,scale .2s;
-}
-html .fb svg{width:32px;height:32px;fill:#fff;stroke:none}
-@media(hover:hover){html .fb:hover{background:#1ebe5a;scale:1.06}}
-html .fb:focus-visible{outline:3px solid #132841;outline-offset:3px}
-
-/* نبضة خضراء هادئة حول زر واتساب */
-@media(prefers-reduced-motion:no-preference){
-  @keyframes fl-ring{
-    0%{box-shadow:0 0 0 0 rgba(37,211,102,.45)}
-    100%{box-shadow:0 0 0 16px rgba(37,211,102,0)}
-  }
-  html .fb,html.sc-fb .fb{animation:fl-ring 2.4s ease-out infinite}
-}
-@media(prefers-reduced-motion:reduce){html .fb{box-shadow:0 0 0 8px rgba(37,211,102,.22)}}
+/* إسناد القانونية — زر «العودة لأعلى الصفحة» العائم (أسفل يمين الشاشة).
+   زر المساعد الآلي (أسفل اليسار) في chat.css. إشارة ظهور الزر هي الصنف sc-fb الذي يضبطه main.js على <html> بعد تجاوز الهيرو. */
 
 /* زر العودة لأعلى الصفحة (يظهر بعد تجاوز الهيرو، بنفس إشارة sc-fb التي يضبطها main.js) */
 .up{
@@ -42,8 +18,6 @@ html.sc-fb .up{opacity:1;visibility:visible;translate:0 0}
 .up:focus-visible{outline:3px solid #8a6d40;outline-offset:3px}
 
 @media(max-width:760px){
-  html .fb{width:56px;height:56px;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px))}
-  html .fb svg{width:30px;height:30px}
   .up{width:46px;height:46px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px))}
 }
 @media(prefers-reduced-motion:reduce){.up{transition:none}}

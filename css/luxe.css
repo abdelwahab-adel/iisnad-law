@@ -100,8 +100,6 @@ footer a:hover{color:var(--au-l);opacity:1}
   #sectors .side{height:220px;min-height:220px;position:static}
 }
 @media(max-width:760px){
-  .fb{width:54px;height:54px;padding:0;border-radius:50%;display:grid;place-items:center;font-size:0;line-height:0;gap:0;bottom:calc(16px + env(safe-area-inset-bottom,0px))}
-  .fb svg{width:26px;height:26px}
   #team .g4{grid-template-columns:1fr 1fr;gap:28px 14px}
   #team .pt2{aspect-ratio:1/1}
   #team .tm h3{font-size:18px}
@@ -224,6 +222,4 @@ footer a{min-width:44px}
 @media(max-width:380px){.hb .bt{flex:1 1 100%}}
 /* زر واتساب العائم على الهاتف: يظهر بعد الهيرو حتى لا يغطي أزرار الشريط */
 @media(max-width:760px){
-  .fb{transition:opacity .25s ease,transform .25s ease,visibility .25s}
-  html:not(.sc-fb) .fb{opacity:0;visibility:hidden;transform:translateY(12px)}
 }

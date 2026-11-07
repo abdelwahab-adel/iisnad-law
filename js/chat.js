@@ -854,6 +854,7 @@
     var u = T(), o = officeNow();
     statusT.textContent = o ? (o.open ? u.open : u.closed) : u.bot;
     statusI.className = o && !o.open ? 'off' : '';
+    pip.className = 'cw-pip' + (o && !o.open ? ' off' : '');
   }
   function applyChrome() {
     var u = T();

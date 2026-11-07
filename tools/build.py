@@ -106,7 +106,7 @@ def page(path, title, desc, body, local, scripts, active):
     out = fix(out, local, root).replace('href="#home-page"', f'href="{root}index.html"')
     p = R / path; p.parent.mkdir(exist_ok=True); p.write_text(out, encoding='utf-8')
 
-SC = ['main', 'motion', 'location', 'float']
+SC = ['main', 'motion', 'location', 'float', 'chat-data', 'chat']
 cta, ar = by['cta'], by['articles']
 
 # ---------- الصفحات ----------
@@ -214,15 +214,7 @@ rep("  showStep(0);\n", "  showStep(0);\n  }\n")
 rep("faqInput.addEventListener('input'", "if (faqInput) faqInput.addEventListener('input'")
 (R / 'js/main.js').write_text(m, encoding='utf-8')
 
-# ---------- تنظيف وتوثيق ----------
+# ---------- تنظيف ----------
+# js/practice.js حُذف لأن بطاقات المجالات صارت روابط لا نوافذ منبثقة. (لا يكتب هذا السكربت في README.md؛ التوثيق يُحرَّر يدويًا.)
 (R / 'js/practice.js').unlink(missing_ok=True)
-rd = R / 'README.md'; t = rd.read_text(encoding='utf-8')
-if '## هيكل الصفحات المستقلة' not in t:
-    rd.write_text(t + '''
-## هيكل الصفحات المستقلة
-
-- الصفحات: `index.html` (الرئيسية) · `about.html` (من نحن + مسيرتنا + الشريك المدير + الفريق + منهجية العمل) · `practice.html` (كل المجالات) · `practice/*.html` (صفحة مستقلة لكل مجال من الـ15) · `faq.html` · `contact.html` (النموذج والخريطة).
-- الصفحات مولَّدة بـ`tools/build.py` من النسخة الأصلية `tools/source.html`. لتعديل القائمة أو التذييل أو نص مجال: عدّل السكربت أو المصدر ثم شغّل `python3 tools/build.py` من جذر المشروع.
-- `css/pages.css` للبانر العلوي وبطاقات المجالات وصفحة المجال. `js/main.js` صار يعمل على أي صفحة (مولَّد من `tools/main.source.js`)، وحُذف `js/practice.js` لأن البطاقات صارت روابط لا نوافذ منبثقة.
-''', encoding='utf-8')
 print('pages:', 5 + len(P))
